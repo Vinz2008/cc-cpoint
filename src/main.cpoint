@@ -1,0 +1,10 @@
+import @std/print.cpoint
+import @std/subprocess.cpoint
+
+extern snprintf(s : i8 ptr, n : int, format : i8 ptr ...);
+
+func cc(path : i8 ptr){
+    var cmd : i8 ptr = gc_malloc((4096 + 4) * sizeof i8)
+    snprintf(cmd, 4096 + 4, "cc %s", path)
+    subprocess::create(cmd)
+}
