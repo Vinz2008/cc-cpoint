@@ -1,5 +1,6 @@
 import src/main.cpoint
 
 func main() void {
-    cc("test.c")
+    cc::cc("test.c")
+    cc::cc_flags("test.c", "-S -o test.S")
 }

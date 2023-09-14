@@ -2,9 +2,17 @@ import @std/print.cpoint
 import @std/subprocess.cpoint
 
 extern snprintf(s : i8 ptr, n : int, format : i8 ptr ...);
+extern strlen(s : i8 ptr) i64;
 
-func cc(path : i8 ptr){
-    var cmd : i8 ptr = gc_malloc((4096 + 4) * sizeof i8)
-    snprintf(cmd, 4096 + 4, "cc %s", path)
-    subprocess::create(cmd)
+mod cc {
+    func cc(path : i8 ptr){
+        var cmd : i8 ptr = gc_malloc((4096 + 4) * sizeof i8)
+        snprintf(cmd, 4096 + 4, "cc %s", path)
+        subprocess::create(cmd)
+    }
+    func cc_flags(path : i8 ptr, flags : i8 ptr){
+        var cmd : i8 ptr = gc_malloc((4096 + 5 + strlen(flags)) * sizeof i8)
+        snprintf(cmd, 4096 + 4, "cc %s %s", flags, path)
+        subprocess::create(cmd)
+    }
 }
