@@ -3,4 +3,5 @@ import src/main.cpoint
 func main() void {
     cc::cc("test.c")
     cc::cc_flags("test.c", "-S -o test.S")
+    var cc_struct : struct cc
 }

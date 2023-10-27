@@ -1,8 +1,26 @@
 import @std/print.cpoint
 import @std/subprocess.cpoint
+import @std/panic.cpoint
 
 extern snprintf(s : i8 ptr, n : int, format : i8 ptr ...);
 extern strlen(s : i8 ptr) i64;
+extern strcmp(s : i8 ptr, s2 : i8 ptr) int;
+
+// will be useful when . will be an operator
+struct cc {
+    var flags : i8 ptr
+    var filename : i8 ptr
+    func cc(){
+        self.flags = " "
+        self.filename = " "
+    }
+    func compile() void {
+        if strcmp(self.filename, " ") == 0 {
+            #panic("No file given to cc")
+        }
+        return void
+    }
+}
 
 mod cc {
     func cc(path : i8 ptr){
