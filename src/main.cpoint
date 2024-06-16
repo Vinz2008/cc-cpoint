@@ -1,5 +1,5 @@
 import @std/print.cpoint
-import @std/subprocess.cpoint
+import @std/process.cpoint
 import @std/panic.cpoint
 
 extern snprintf(s : i8 ptr, n : int, format : i8 ptr ...);
@@ -26,11 +26,11 @@ mod cc {
     func cc(path : i8 ptr){
         var cmd : i8 ptr = gc_malloc((4096 + 4) * sizeof i8)
         snprintf(cmd, 4096 + 4, "cc %s", path)
-        subprocess::create(cmd)
+        process::create(cmd)
     }
     func cc_flags(path : i8 ptr, flags : i8 ptr){
         var cmd : i8 ptr = gc_malloc((4096 + 5 + strlen(flags)) * sizeof i8)
         snprintf(cmd, 4096 + 4, "cc %s %s", flags, path)
-        subprocess::create(cmd)
+        process::create(cmd)
     }
 }
